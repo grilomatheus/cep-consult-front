@@ -1,4 +1,3 @@
-<!-- src\components\Atoms\ButtonSubmit.vue -->
 <template>
 	<v-btn :disabled="!isValid" @click="submit">Buscar</v-btn>
 </template>

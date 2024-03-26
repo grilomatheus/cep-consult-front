@@ -1,4 +1,3 @@
-<!-- src\components\Molecules\SearchForm.vue -->
 <template>
 	<v-form @submit.prevent="onSubmit">
 		<InputCEP v-model="cep" @update:modelValue="validateCEP" />

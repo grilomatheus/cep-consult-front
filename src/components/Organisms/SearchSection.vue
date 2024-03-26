@@ -9,11 +9,12 @@
 					<SearchForm @submit-cep="searchCEP" />
 					<ResultsList :items="results" @remove-item="removeItem" />
 					<ButtonReset v-if="results.length > 0" @reset="resetAll" />
-					<v-alert v-if="errorMessage && showAlert" type="error" dismissible @input="showAlert = false">
+					<v-alert :key="alertKey" v-if="errorMessage && showAlert" type="error" dismissible
+						@input="showAlert = false">
 						{{ errorMessage }}
 					</v-alert>
 					<v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
-					</v-card>
+				</v-card>
 			</v-col>
 		</v-row>
 	</v-container>

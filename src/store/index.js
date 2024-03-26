@@ -1,4 +1,3 @@
-// src/store/index.js
 import { defineStore } from 'pinia';
 
 export const useMainStore = defineStore('main', {
@@ -19,6 +18,7 @@ export const useMainStore = defineStore('main', {
 				}
 				this.results.push(data);
 			} catch (error) {
+				alert(error.message);
 				this.errorMessage = error.message;
 			} finally {
 				this.loading = false;

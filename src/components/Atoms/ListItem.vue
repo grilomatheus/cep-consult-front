@@ -1,4 +1,3 @@
-<!-- src/components/Atoms/ListItem.vue -->
 <template>
 	<v-list-item>
 		<div class="list-item-content">

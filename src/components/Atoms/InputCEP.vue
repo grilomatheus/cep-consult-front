@@ -1,4 +1,3 @@
-<!-- src\components\Atoms\InputCEP.vue -->
 <template>
 	<v-text-field v-model="cep" label="Digite o CEP" :rules="rules" placeholder="00000-000" outlined
 		clearable></v-text-field>
