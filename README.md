@@ -30,7 +30,7 @@ Para rodar o projeto localmente, siga estes passos:
 2. Entre no diretório do projeto:
 
     ```bash
-    cd jedis-fron
+    cd jedis-front
     ```
 
 3. Instale as dependências:
