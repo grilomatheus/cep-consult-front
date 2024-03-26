@@ -47,6 +47,26 @@ Para rodar o projeto localmente, siga estes passos:
 
 Acesse `http://localhost:8080` no seu navegador para ver a aplicação.
 
+
+## API Utilizada
+
+Este projeto utiliza a API pública [ViaCEP](https://viacep.com.br) para consulta de endereços a partir de CEPs brasileiros.
+
+### Endpoint
+
+- `GET https://viacep.com.br/ws/{cep}/json/`
+
+Substitua `{cep}` pelo CEP que deseja consultar. A API retornará um objeto JSON com as informações do endereço.
+
+### Exemplo de Uso
+
+Para consultar o CEP `22010-000`, faça uma requisição GET para:
+https://viacep.com.br/ws/22010000/json/
+
+
+A resposta será um objeto JSON contendo os dados do endereço associado ao CEP.
+
+
 ## Testes
 
 Para executar os testes, use o comando:
