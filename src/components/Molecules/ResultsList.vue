@@ -13,6 +13,7 @@ export default {
 	props: {
 		items: Array,
 	},
+	emits: ['remove-item'],
 	methods: {
 		removeItem(index) {
 			this.$emit('remove-item', index);

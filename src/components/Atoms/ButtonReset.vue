@@ -4,7 +4,8 @@
   </template>
   
   <script>
-  export default {
-	emits: ['reset']
-  };
+  import { defineComponent } from 'vue';
+  
+  export default defineComponent({});
   </script>
+  

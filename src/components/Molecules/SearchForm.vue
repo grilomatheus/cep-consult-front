@@ -1,40 +1,35 @@
 <!-- src\components\Molecules\SearchForm.vue -->
 <template>
 	<v-form @submit.prevent="onSubmit">
-		<InputCEP v-model="cep" />
-		<ButtonSubmit :disabled="!isValid" />
+		<InputCEP v-model="cep" @update:modelValue="validateCEP" />
+		<ButtonSubmit :isValid="isValid" @submit="onSubmit" />
 	</v-form>
 </template>
 
 <script>
+import { ref } from 'vue';
 import InputCEP from '../Atoms/InputCEP.vue';
 import ButtonSubmit from '../Atoms/ButtonSubmit.vue';
 
 export default {
 	components: { InputCEP, ButtonSubmit },
-	data() {
-		return {
-			cep: '',
-			isValid: false,
+	setup(props, { emit }) {
+		const cep = ref('');
+		const isValid = ref(false);
+
+		const validateCEP = (value) => {
+			isValid.value = /^\d{5}-\d{3}$/.test(value);
 		};
-	},
-	methods: {
-		validateCEP() {
-			this.isValid = /^\d{5}-\d{3}$/.test(this.cep);
-		},
-		onSubmit() {
-			this.validateCEP();
-			if (this.isValid) {
-				this.$emit('submit-cep', this.cep);
+
+		const onSubmit = () => {
+			if (isValid.value) {
+				emit('submit-cep', cep.value);
 			} else {
 				alert('Formato de CEP inválido.');
 			}
-		}
-	},
-	watch: {
-		cep() {
-			this.validateCEP();
-		},
+		};
+
+		return { cep, isValid, onSubmit, validateCEP };
 	},
 };
 </script>
