@@ -1,20 +1,26 @@
-<!-- src\components\Organisms\SearchSection.vue -->
 <template>
 	<v-container>
 		<v-row justify="center">
 			<v-col cols="12" md="8">
 				<v-card class="pa-3">
+					<div class="text-center">
+						<img src="/logo.png" alt="Logo" style="max-width: 100px;">
+					</div>
 					<SearchForm @submit-cep="searchCEP" />
 					<ResultsList :items="results" @remove-item="removeItem" />
 					<ButtonReset v-if="results.length > 0" @reset="resetAll" />
-					<v-alert v-if="errorMessage" type="error" class="mt-3">{{ errorMessage }}</v-alert>
-				</v-card>
+					<v-alert v-if="errorMessage && showAlert" type="error" dismissible @input="showAlert = false">
+						{{ errorMessage }}
+					</v-alert>
+					<v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
+					</v-card>
 			</v-col>
 		</v-row>
 	</v-container>
 </template>
 
 <script>
+import { useMainStore } from '../../store';
 import { ref } from 'vue';
 import SearchForm from '../Molecules/SearchForm.vue';
 import ResultsList from '../Molecules/ResultsList.vue';
@@ -23,36 +29,23 @@ import ButtonReset from '../Atoms/ButtonReset.vue';
 export default {
 	components: { SearchForm, ResultsList, ButtonReset },
 	setup() {
-		const results = ref([]);
-		const errorMessage = ref('');
+		const mainStore = useMainStore();
+		const showAlert = ref(true);
 
-		const searchCEP = async (cep) => {
-			try {
-				const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-				const data = await response.json();
-				if (response.ok) {
-					if (data.erro) {
-						throw new Error('CEP não encontrado.');
-					} else {
-						results.value.push(data);
-						errorMessage.value = '';
-					}
-				} else {
-					throw new Error('Erro ao buscar o CEP. Tente novamente mais tarde.');
-				}
-			} catch (error) {
-				errorMessage.value = error.message;
-			}
-		};
-		const removeItem = (index) => {
-			results.value.splice(index, 1);
-		};
 		const resetAll = () => {
-			results.value = [];
-			errorMessage.value = '';
+			mainStore.resetCep();
+			showAlert.value = true;
 		};
 
-		return { results, errorMessage, searchCEP, resetAll, removeItem };
+		return {
+			results: mainStore.results,
+			errorMessage: mainStore.errorMessage,
+			loading: mainStore.loading,
+			searchCEP: mainStore.searchCEP,
+			resetAll,
+			removeItem: mainStore.removeResult,
+			showAlert,
+		};
 	},
 };
 </script>
