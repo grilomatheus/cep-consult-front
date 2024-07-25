@@ -1,5 +1,5 @@
 	<template>
-		<v-btn @click="$emit('reset')">Limpar Todos</v-btn>
+		<v-btn color="primary" variant="outlined" @click="$emit('reset')">Limpar Todos</v-btn>
 	</template>
 	
 	<script>

@@ -2,15 +2,18 @@
 	<v-container>
 		<v-row justify="center">
 			<v-col cols="12" md="8">
-				<v-card class="pa-3">
+				<v-card variant="outlined" class="pa-3" justify-center>
 					<div class="text-center">
-						<img src="/logo.png" alt="Logo" style="max-width: 100px;">
+						<img src="/logo.png" alt="Logo" style="max-width: 300px;">
 					</div>
 					<SearchForm @submit-cep="searchCEP" />
 					<ResultsList :items="results" @remove-item="removeItem" />
-					<ButtonReset v-if="results.length > 0" @reset="resetAll" />
-					<v-alert :key="alertKey" v-if="errorMessage && showAlert" type="error" dismissible
-						@input="showAlert = false">
+					<v-row justify="center" v-if="results.length > 0">
+						<v-col cols="auto">
+							<ButtonReset @reset="resetAll" />
+						</v-col>
+					</v-row>
+					<v-alert v-if="errorMessage" type="error" dismissible @input="errorMessage = ''">
 						{{ errorMessage }}
 					</v-alert>
 					<v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
@@ -35,7 +38,6 @@ export default {
 
 		const resetAll = () => {
 			mainStore.resetCep();
-			showAlert.value = true;
 		};
 
 		return {

@@ -1,6 +1,13 @@
 <template>
-	<v-text-field v-model="cep" label="Digite o CEP" :rules="rules" placeholder="00000-000" outlined
-		clearable></v-text-field>
+	<v-text-field 
+		v-model="cep" 
+		label="Digite o CEP" 
+		:rules="rules" 
+		placeholder="00000-000" 
+		density="compact"
+		variant="outlined"
+		clearable 
+	/>
 </template>
 
 <script lang="ts">
@@ -26,7 +33,6 @@ export default defineComponent({
 			}
 			emit('update:modelValue', cep.value);
 		});
-
 
 		return { cep, rules };
 	},

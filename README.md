@@ -24,13 +24,13 @@ Para rodar o projeto localmente, siga estes passos:
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/grilomatheus/jedis-front.git
+    git clone https://github.com/grilomatheus/cep-consult-front.git
     ```
 
 2. Entre no diretório do projeto:
 
     ```bash
-    cd jedis-front
+    cd cep-consult-front
     ```
 
 3. Instale as dependências:
@@ -81,4 +81,4 @@ Contribuições são sempre bem-vindas! Para contribuir, por favor, faça um for
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE.md para mais detalhes.
 
 
-Desenvolvido por Matheus Grilo com ❤️.
+Desenvolvido por Matheus Grilo
